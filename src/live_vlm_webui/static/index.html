@@ -911,6 +911,276 @@ limitations under the License.
             }
         }
 
+        body.mdg-theme {
+            --bg-primary: #0b1324;
+            --bg-secondary: #0f1b32;
+            --bg-tertiary: #14243f;
+            --card-bg: rgba(12, 20, 36, 0.88);
+            --card-hover: rgba(22, 34, 58, 0.9);
+            --border-color: rgba(114, 161, 221, 0.25);
+            --text-primary: #e7f1ff;
+            --text-secondary: #9bb1d4;
+            --text-muted: #6b7c9f;
+            --accent-color: #5ec6ff;
+            --primary-blue: #4ca3ff;
+            --warning-color: #f5a524;
+            background: radial-gradient(circle at 20% 20%, rgba(63, 107, 175, 0.25), transparent 45%),
+                        radial-gradient(circle at 80% 10%, rgba(16, 71, 128, 0.35), transparent 40%),
+                        #0b1324;
+            position: relative;
+        }
+
+        body.mdg-theme::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(73, 121, 189, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(73, 121, 189, 0.15) 1px, transparent 1px);
+            background-size: 44px 44px;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.mdg-theme > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mdg-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 10px 18px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mdg-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(94, 198, 255, 0.8), rgba(30, 90, 160, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #071122;
+            box-shadow: 0 6px 16px rgba(18, 36, 74, 0.6);
+        }
+
+        .mdg-brand-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .mdg-brand-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .container {
+            gap: 16px;
+        }
+
+        .container.drawer-collapsed .sidebar {
+            width: 0;
+            padding: 0;
+            border-right: none;
+            overflow: hidden;
+        }
+
+        .container.drawer-collapsed .mdg-brand {
+            display: none;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) var(--right-drawer-width, 360px);
+            gap: 16px;
+            height: 100%;
+        }
+
+        .stage {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 100%;
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--card-bg);
+            gap: 12px;
+        }
+
+        .stage-title {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .drawer-toggle-btn {
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-toggle-btn:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(94, 198, 255, 0.15);
+        }
+
+        .video-card {
+            flex: 1;
+            min-height: 60vh;
+        }
+
+        .right-drawer {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .right-drawer.collapsed {
+            width: 0;
+            min-width: 0;
+            padding: 0;
+            border: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .right-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .right-drawer-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .right-drawer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .result-card {
+            background: rgba(10, 16, 28, 0.9);
+            border: 1px solid var(--border-color);
+        }
+
+        .result-card-body {
+            padding: 14px 16px 16px;
+            transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+            max-height: 2000px;
+            opacity: 1;
+        }
+
+        .result-card-body.collapsed {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 16px;
+            overflow: hidden;
+        }
+
+        .section-toggle {
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .section-toggle.collapsed {
+            transform: rotate(-180deg);
+        }
+
+        .preset-manager {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .preset-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .preset-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .preset-btn.danger {
+            border-color: rgba(255, 90, 90, 0.6);
+            color: #ffb6b6;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-drawer {
+                order: 2;
+            }
+        }
+
         .video-control-btn {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -2068,7 +2338,7 @@ limitations under the License.
         }
     </script>
 </head>
-<body>
+<body class="mdg-theme">
     <!-- Header -->
     <div class="header">
         <div class="header-left">
@@ -2254,9 +2524,16 @@ limitations under the License.
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="appContainer">
         <!-- Left Sidebar -->
         <div class="sidebar">
+            <div class="mdg-brand">
+                <div class="mdg-logo">MDG</div>
+                <div class="mdg-brand-text">
+                    <div class="mdg-brand-title">Mission Data Grid</div>
+                    <div class="mdg-brand-subtitle">Coast Guard Operations</div>
+                </div>
+            </div>
             <!-- VLM API Configuration -->
             <div class="panel">
                 <div class="panel-header" onclick="togglePanel('vlmConfig')">
@@ -2449,6 +2726,16 @@ STRATEGY SECTION:
 After commands, explain: obstacles detected, clearance margins, goal inference, safety considerations.">🤖 Robot Navigation (ROS)</option>
                         </select>
                     </div>
+                    <div class="form-group preset-manager">
+                        <label>Preset Name</label>
+                        <input type="text" id="promptPresetName" placeholder="e.g., Coast Guard - Vessel ID">
+                        <div class="preset-actions">
+                            <button type="button" class="preset-btn" id="presetSaveBtn">Save New</button>
+                            <button type="button" class="preset-btn" id="presetUpdateBtn">Update</button>
+                            <button type="button" class="preset-btn danger" id="presetDeleteBtn">Delete</button>
+                        </div>
+                        <div class="input-hint" id="promptPresetStatus">Saved presets stay in this browser until removed.</div>
+                    </div>
                     <div class="form-group">
                         <label>Custom Prompt</label>
                         <textarea id="promptText" placeholder="Enter your custom prompt here...">Describe what you see in this image in one sentence.</textarea>
@@ -2465,185 +2752,220 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Video Feed -->
-            <div class="video-card" id="videoCard">
-                <!-- Big Start Button (centered overlay) -->
-                <button id="bigStartBtn" class="big-start-btn" onclick="start()">
-                    <i data-lucide="play"></i>
-                    Start
-                </button>
+            <div class="stage">
+                <div class="stage-header">
+                    <button class="drawer-toggle-btn" id="leftDrawerToggle" title="Toggle controls drawer">
+                        <i data-lucide="chevrons-left"></i>
+                    </button>
+                    <div class="stage-title">Live Feed</div>
+                    <button class="drawer-toggle-btn" id="rightDrawerToggle" title="Toggle analysis drawer">
+                        <i data-lucide="chevrons-right"></i>
+                    </button>
+                </div>
 
-                <!-- Small Stop Button (top-left corner when streaming) -->
-                <button id="smallStopBtn" class="small-stop-btn" onclick="stop()">
-                    <i data-lucide="square"></i>
-                </button>
+                <!-- Video Feed -->
+                <div class="video-card" id="videoCard">
+                    <!-- Big Start Button (centered overlay) -->
+                    <button id="bigStartBtn" class="big-start-btn" onclick="start()">
+                        <i data-lucide="play"></i>
+                        Start
+                    </button>
 
-                <!-- Fullscreen Button (top-right corner) -->
-                <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen">
-                    <i data-lucide="maximize" id="fullscreenIcon"></i>
-                </button>
+                    <!-- Small Stop Button (top-left corner when streaming) -->
+                    <button id="smallStopBtn" class="small-stop-btn" onclick="stop()">
+                        <i data-lucide="square"></i>
+                    </button>
 
-                <!-- VLM Output Overlay (shown in fullscreen mode) -->
-                <div class="fullscreen-vlm-overlay" id="fullscreenVlmOverlay">
-                    <div class="vlm-title">
+                    <!-- Fullscreen Button (top-right corner) -->
+                    <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen">
+                        <i data-lucide="maximize" id="fullscreenIcon"></i>
+                    </button>
+
+                    <!-- VLM Output Overlay (shown in fullscreen mode) -->
+                    <div class="fullscreen-vlm-overlay" id="fullscreenVlmOverlay">
+                        <div class="vlm-title">
+                            <i data-lucide="bot"></i>
+                            VLM Output
+                        </div>
+                        <div class="vlm-content" id="fullscreenVlmContent">Ready</div>
+                        <div class="vlm-metrics" id="fullscreenVlmMetrics"></div>
+                    </div>
+
+                    <div class="stream-stats-pill" id="streamStatsPill" role="status" aria-live="polite"></div>
+                    <div class="stream-load-overlay" id="streamLoadOverlay" role="status" aria-live="polite">
+                        <div class="stream-load-spinner" id="streamLoadSpinner"></div>
+                        <div class="stream-load-text" id="streamLoadText">Connecting...</div>
+                    </div>
+
+                    <!-- Legacy controls (kept for mirror functionality) -->
+                    <div class="video-controls" style="top: 64px;">
+                        <div class="video-controls-row">
+                            <button class="video-control-btn" id="mirrorBtn" title="Mirror video (M)">
+                                <i data-lucide="flip-horizontal"></i> Mirror
+                            </button>
+                            <button class="video-control-btn" id="fitModeBtn" title="Cycle video fit mode (C)">
+                                <i data-lucide="expand"></i> <span id="fitModeLabel">Fit</span>
+                            </button>
+                            <button class="video-control-btn" id="snapshotBtn" title="Capture snapshot (S)">
+                                <i data-lucide="camera"></i> Snapshot
+                            </button>
+                                <button class="video-control-btn" id="pipBtn" title="Toggle Picture-in-Picture (P)">
+                                <i data-lucide="picture-in-picture"></i> PiP
+                            </button>
+                        </div>
+                        <div class="video-controls-row">
+                            <button class="video-control-btn" id="reconnectBtn" title="Reconnect stream (R)" disabled>
+                                <i data-lucide="refresh-cw"></i> Reconnect
+                            </button>
+                        </div>
+                    </div>
+
+                    <video id="videoElement" autoplay playsinline muted></video>
+                    <div class="video-overlay" id="videoOverlay"></div>
+                </div>
+            </div>
+
+            <aside class="right-drawer" id="rightDrawer">
+                <div class="right-drawer-header">
+                    <div class="right-drawer-title">
                         <i data-lucide="bot"></i>
-                        VLM Output
+                        AI Answers
                     </div>
-                    <div class="vlm-content" id="fullscreenVlmContent">Ready</div>
-                    <div class="vlm-metrics" id="fullscreenVlmMetrics"></div>
-                </div>
-
-                <div class="stream-stats-pill" id="streamStatsPill" role="status" aria-live="polite"></div>
-                <div class="stream-load-overlay" id="streamLoadOverlay" role="status" aria-live="polite">
-                    <div class="stream-load-spinner" id="streamLoadSpinner"></div>
-                    <div class="stream-load-text" id="streamLoadText">Connecting...</div>
-                </div>
-
-                <!-- Legacy controls (kept for mirror functionality) -->
-                <div class="video-controls" style="top: 64px;">
-                    <div class="video-controls-row">
-                        <button class="video-control-btn" id="mirrorBtn" title="Mirror video (M)">
-                            <i data-lucide="flip-horizontal"></i> Mirror
-                        </button>
-                        <button class="video-control-btn" id="fitModeBtn" title="Cycle video fit mode (C)">
-                            <i data-lucide="expand"></i> <span id="fitModeLabel">Fit</span>
-                        </button>
-                        <button class="video-control-btn" id="snapshotBtn" title="Capture snapshot (S)">
-                            <i data-lucide="camera"></i> Snapshot
-                        </button>
-                            <button class="video-control-btn" id="pipBtn" title="Toggle Picture-in-Picture (P)">
-                            <i data-lucide="picture-in-picture"></i> PiP
-                        </button>
-                    </div>
-                    <div class="video-controls-row">
-                        <button class="video-control-btn" id="reconnectBtn" title="Reconnect stream (R)" disabled>
-                            <i data-lucide="refresh-cw"></i> Reconnect
-                        </button>
-                    </div>
-                </div>
-
-                <video id="videoElement" autoplay playsinline muted></video>
-                <div class="video-overlay" id="videoOverlay"></div>
-            </div>
-
-            <!-- Generation Result -->
-            <div class="result-card">
-                <div class="result-header">
-                    <div class="result-header-left">
-                        <div class="result-title">
-                            <i data-lucide="bot"></i> VLM Output Info
-                        </div>
-                        <div class="result-subtitle">
-                            Model: <span id="modelName" style="font-weight: 600; color: var(--accent-color);">--</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div class="metrics-inline" id="metricsInline" style="display: none;">
-                            <div class="metric-item">
-                                <span>Latency:</span>
-                                <span class="metric-value" id="latencyValue">--</span>
-                                <span>ms</span>
-                            </div>
-                            <div class="metric-item">
-                                <span>Avg:</span>
-                                <span class="metric-value" id="avgLatencyValue">--</span>
-                                <span>ms</span>
-                            </div>
-                            <div class="metric-item">
-                                <span>Count:</span>
-                                <span class="metric-value" id="countValue">--</span>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-
-                <div class="result-prompt" id="currentPrompt"></div>
-                <div id="requestPayloadDebug" class="debug-payload-block" style="display: none; margin-top: 8px;">
-                    <details style="margin: 0;">
-                        <summary style="cursor: pointer; font-size: 12px; color: var(--text-secondary);">Request payload (debug)</summary>
-                        <pre id="requestPayloadContent" style="margin: 8px 0 0; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-size: 11px; overflow: auto; max-height: 240px; white-space: pre-wrap; word-break: break-all;"></pre>
-                    </details>
-                </div>
-                <div class="result-text" id="resultText">
-                    <button class="markdown-toggle-embedded" id="markdownToggle" title="Toggle Markdown Rendering">
-                        <span id="markdownIcon"><i data-lucide="code"></i></span>
-                        <span id="markdownText">Markdown</span>
+                    <button class="drawer-toggle-btn" id="rightDrawerCollapseBtn" title="Collapse analysis drawer">
+                        <i data-lucide="chevron-right"></i>
                     </button>
-                    <button class="copy-button-embedded" id="copyButton" title="Copy to clipboard">
-                        <i data-lucide="copy"></i>
-                    </button>
-                    <div class="result-text-content" id="resultTextContent"></div>
                 </div>
-                <div id="responsePayloadDebug" class="debug-payload-block" style="display: none; margin-top: 8px;">
-                    <details style="margin: 0;">
-                        <summary style="cursor: pointer; font-size: 12px; color: var(--text-secondary);">Response payload (debug)</summary>
-                        <pre id="responsePayloadContent" style="margin: 8px 0 0; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-size: 11px; overflow: auto; max-height: 240px; white-space: pre-wrap; word-break: break-all;"></pre>
-                    </details>
+                <div class="right-drawer-content" id="rightDrawerContent">
+                    <!-- Generation Result -->
+                    <div class="result-card" id="resultCard">
+                        <div class="result-header">
+                            <div class="result-header-left">
+                                <div class="result-title">
+                                    <i data-lucide="bot"></i> VLM Output Info
+                                </div>
+                                <div class="result-subtitle">
+                                    Model: <span id="modelName" style="font-weight: 600; color: var(--accent-color);">--</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div class="metrics-inline" id="metricsInline" style="display: none;">
+                                    <div class="metric-item">
+                                        <span>Latency:</span>
+                                        <span class="metric-value" id="latencyValue">--</span>
+                                        <span>ms</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Avg:</span>
+                                        <span class="metric-value" id="avgLatencyValue">--</span>
+                                        <span>ms</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Count:</span>
+                                        <span class="metric-value" id="countValue">--</span>
+                                    </div>
+                                </div>
+                                <button class="section-toggle" id="resultCardToggle" title="Collapse VLM output">
+                                    <i data-lucide="chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="result-card-body" id="resultCardBody">
+                            <div class="result-prompt" id="currentPrompt"></div>
+                            <div id="requestPayloadDebug" class="debug-payload-block" style="display: none; margin-top: 8px;">
+                                <details style="margin: 0;">
+                                    <summary style="cursor: pointer; font-size: 12px; color: var(--text-secondary);">Request payload (debug)</summary>
+                                    <pre id="requestPayloadContent" style="margin: 8px 0 0; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-size: 11px; overflow: auto; max-height: 240px; white-space: pre-wrap; word-break: break-all;"></pre>
+                                </details>
+                            </div>
+                            <div class="result-text" id="resultText">
+                                <button class="markdown-toggle-embedded" id="markdownToggle" title="Toggle Markdown Rendering">
+                                    <span id="markdownIcon"><i data-lucide="code"></i></span>
+                                    <span id="markdownText">Markdown</span>
+                                </button>
+                                <button class="copy-button-embedded" id="copyButton" title="Copy to clipboard">
+                                    <i data-lucide="copy"></i>
+                                </button>
+                                <div class="result-text-content" id="resultTextContent"></div>
+                            </div>
+                            <div id="responsePayloadDebug" class="debug-payload-block" style="display: none; margin-top: 8px;">
+                                <details style="margin: 0;">
+                                    <summary style="cursor: pointer; font-size: 12px; color: var(--text-secondary);">Response payload (debug)</summary>
+                                    <pre id="responsePayloadContent" style="margin: 8px 0 0; padding: 10px; background: var(--bg-secondary); border-radius: 8px; font-size: 11px; overflow: auto; max-height: 240px; white-space: pre-wrap; word-break: break-all;"></pre>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Stats -->
+                    <div class="result-card" id="systemStatsCard">
+                        <div class="result-header" style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                            <div class="result-title">
+                                <i data-lucide="activity"></i> Local System Stats
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-secondary); text-align: right; font-weight: 400; flex-shrink: 1; min-width: 0;">
+                                <span id="systemInfoHeader" style="flex: 1;">Loading...</span>
+                                <img id="systemProductImage"
+                                     src=""
+                                     alt="System"
+                                     style="width: 48px; height: 48px; object-fit: contain; display: none;"
+                                     onerror="this.style.display='none';">
+                                <button class="section-toggle" id="systemStatsToggle" title="Collapse system stats">
+                                    <i data-lucide="chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="result-card-body" id="systemStatsBody">
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <span class="stat-label">GPU Utilization</span>
+                                        <span class="stat-value" id="gpuUtil">--%</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" id="gpuUtilBar" style="width: 0%"></div>
+                                    </div>
+                                    <canvas id="gpuUtilSparkline" class="sparkline"></canvas>
+                                </div>
+
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <span class="stat-label">VRAM Usage</span>
+                                        <span class="stat-value" id="vramUsage">-- GB</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" id="vramBar" style="width: 0%"></div>
+                                    </div>
+                                    <canvas id="vramSparkline" class="sparkline"></canvas>
+                                </div>
+
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <span class="stat-label">CPU Utilization</span>
+                                        <span class="stat-value" id="cpuUtil">--%</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" id="cpuBar" style="width: 0%"></div>
+                                    </div>
+                                    <canvas id="cpuSparkline" class="sparkline"></canvas>
+                                </div>
+
+                                <div class="stat-card">
+                                    <div class="stat-header">
+                                        <span class="stat-label">System RAM</span>
+                                        <span class="stat-value" id="ramUsage">-- GB</span>
+                                    </div>
+                                    <div class="stat-bar">
+                                        <div class="stat-bar-fill" id="ramBar" style="width: 0%"></div>
+                                    </div>
+                                    <canvas id="ramSparkline" class="sparkline"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- System Stats -->
-            <div class="result-card" id="systemStatsCard">
-                <div class="result-header" style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
-                    <div class="result-title">
-                        <i data-lucide="activity"></i> Local System Stats
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-secondary); text-align: right; font-weight: 400; flex-shrink: 1; min-width: 0;">
-                        <span id="systemInfoHeader" style="flex: 1;">Loading...</span>
-                        <img id="systemProductImage"
-                             src=""
-                             alt="System"
-                             style="width: 48px; height: 48px; object-fit: contain; display: none;"
-                             onerror="this.style.display='none';">
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-label">GPU Utilization</span>
-                            <span class="stat-value" id="gpuUtil">--%</span>
-                        </div>
-                        <div class="stat-bar">
-                            <div class="stat-bar-fill" id="gpuUtilBar" style="width: 0%"></div>
-                        </div>
-                        <canvas id="gpuUtilSparkline" class="sparkline"></canvas>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-label">VRAM Usage</span>
-                            <span class="stat-value" id="vramUsage">-- GB</span>
-                        </div>
-                        <div class="stat-bar">
-                            <div class="stat-bar-fill" id="vramBar" style="width: 0%"></div>
-                        </div>
-                        <canvas id="vramSparkline" class="sparkline"></canvas>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-label">CPU Utilization</span>
-                            <span class="stat-value" id="cpuUtil">--%</span>
-                        </div>
-                        <div class="stat-bar">
-                            <div class="stat-bar-fill" id="cpuBar" style="width: 0%"></div>
-                        </div>
-                        <canvas id="cpuSparkline" class="sparkline"></canvas>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-label">System RAM</span>
-                            <span class="stat-value" id="ramUsage">-- GB</span>
-                        </div>
-                        <div class="stat-bar">
-                            <div class="stat-bar-fill" id="ramBar" style="width: 0%"></div>
-                        </div>
-                        <canvas id="ramSparkline" class="sparkline"></canvas>
-                    </div>
-                </div>
-            </div>
+            </aside>
         </div>
     </div>
 
@@ -2669,6 +2991,14 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
         const promptPreset = document.getElementById('promptPreset');
         const promptText = document.getElementById('promptText');
         const maxTokens = document.getElementById('maxTokens');
+        const builtInPresets = Array.from(promptPreset.options)
+            .slice(1)
+            .map((option, index) => ({
+                id: `builtin-${index}`,
+                name: option.textContent.trim(),
+                prompt: option.value,
+                builtIn: true
+            }));
         const modelSelect = document.getElementById('modelSelect');
         const refreshModelsBtn = document.getElementById('refreshModelsBtn');
         const processEvery = document.getElementById('processEvery');
@@ -2683,6 +3013,20 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
         const streamLoadOverlay = document.getElementById('streamLoadOverlay');
         const streamLoadText = document.getElementById('streamLoadText');
         const rtspUrlInput = document.getElementById('rtspUrl');
+        const appContainer = document.getElementById('appContainer');
+        const leftDrawerToggle = document.getElementById('leftDrawerToggle');
+        const rightDrawerToggle = document.getElementById('rightDrawerToggle');
+        const rightDrawer = document.getElementById('rightDrawer');
+        const rightDrawerCollapseBtn = document.getElementById('rightDrawerCollapseBtn');
+        const promptPresetName = document.getElementById('promptPresetName');
+        const presetSaveBtn = document.getElementById('presetSaveBtn');
+        const presetUpdateBtn = document.getElementById('presetUpdateBtn');
+        const presetDeleteBtn = document.getElementById('presetDeleteBtn');
+        const promptPresetStatus = document.getElementById('promptPresetStatus');
+        const resultCardBody = document.getElementById('resultCardBody');
+        const systemStatsBody = document.getElementById('systemStatsBody');
+        const resultCardToggle = document.getElementById('resultCardToggle');
+        const systemStatsToggle = document.getElementById('systemStatsToggle');
         const heartbeatTimeoutMs = 4000;
         const streamVideoTimeoutMs = 6000;
         const maxAutoReconnectAttempts = 4;
@@ -2720,6 +3064,10 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
             videoFitMode: 'videoFitMode',
             activeTab: 'activeTab',
             pipEnabled: 'pipEnabled',
+            drawerLeftCollapsed: 'drawerLeftCollapsed',
+            drawerRightCollapsed: 'drawerRightCollapsed',
+            promptPresets: 'promptPresets',
+            promptPresetSelected: 'promptPresetSelected',
         };
         // Enable markdown by default (user can disable if they prefer raw text)
         let markdownEnabled = localStorage.getItem('markdownEnabled') !== 'false';
@@ -2733,6 +3081,122 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
             streamLoadOverlay.classList.toggle('visible', visible);
             streamLoadOverlay.style.opacity = visible ? '1' : '0.4';
             lastStreamOverlayTs = visible ? Date.now() : 0;
+        }
+
+        function applyDrawerState({ leftCollapsed, rightCollapsed } = {}) {
+            const leftState = leftCollapsed ?? localStorage.getItem(STORAGE_KEYS.drawerLeftCollapsed) === 'true';
+            const rightState = rightCollapsed ?? localStorage.getItem(STORAGE_KEYS.drawerRightCollapsed) === 'true';
+
+            if (appContainer) {
+                appContainer.classList.toggle('drawer-collapsed', leftState);
+            }
+            if (rightDrawer) {
+                rightDrawer.classList.toggle('collapsed', rightState);
+            }
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.style.setProperty('--right-drawer-width', rightState ? '0px' : '360px');
+            }
+        }
+
+        function toggleCardBody(bodyEl, toggleEl) {
+            if (!bodyEl || !toggleEl) {
+                return;
+            }
+            const collapsed = bodyEl.classList.toggle('collapsed');
+            toggleEl.classList.toggle('collapsed', collapsed);
+        }
+
+        function setPresetStatus(message, isError = false) {
+            if (!promptPresetStatus) {
+                return;
+            }
+            promptPresetStatus.textContent = message;
+            promptPresetStatus.style.color = isError ? 'var(--warning-color)' : 'var(--text-secondary)';
+        }
+
+        function loadUserPresets() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEYS.promptPresets);
+                return stored ? JSON.parse(stored) : [];
+            } catch (err) {
+                console.warn('Failed to parse stored presets:', err);
+                return [];
+            }
+        }
+
+        function saveUserPresets(presets) {
+            localStorage.setItem(STORAGE_KEYS.promptPresets, JSON.stringify(presets));
+        }
+
+        function generatePresetId() {
+            return (crypto.randomUUID ? crypto.randomUUID() : `preset-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+        }
+
+        function renderPromptPresets(selectedId) {
+            const userPresets = loadUserPresets();
+            const storedSelected = selectedId || localStorage.getItem(STORAGE_KEYS.promptPresetSelected) || '';
+
+            promptPreset.innerHTML = '';
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = '-- Select a preset --';
+            promptPreset.appendChild(placeholder);
+
+            if (userPresets.length) {
+                const customGroup = document.createElement('optgroup');
+                customGroup.label = 'Custom Presets';
+                userPresets.forEach((preset) => {
+                    const option = document.createElement('option');
+                    option.value = preset.id;
+                    option.textContent = preset.name;
+                    option.dataset.prompt = preset.prompt;
+                    option.dataset.presetType = 'custom';
+                    customGroup.appendChild(option);
+                });
+                promptPreset.appendChild(customGroup);
+            }
+
+            if (builtInPresets.length) {
+                const builtInGroup = document.createElement('optgroup');
+                builtInGroup.label = 'Built-in';
+                builtInPresets.forEach((preset) => {
+                    const option = document.createElement('option');
+                    option.value = preset.id;
+                    option.textContent = preset.name;
+                    option.dataset.prompt = preset.prompt;
+                    option.dataset.presetType = 'builtin';
+                    builtInGroup.appendChild(option);
+                });
+                promptPreset.appendChild(builtInGroup);
+            }
+
+            if (storedSelected) {
+                promptPreset.value = storedSelected;
+            }
+        }
+
+        function applyPresetSelection(presetId, { apply = true } = {}) {
+            if (!presetId) {
+                return;
+            }
+            const option = Array.from(promptPreset.options).find(opt => opt.value === presetId);
+            if (!option) {
+                return;
+            }
+
+            const prompt = option.dataset.prompt || '';
+            if (prompt) {
+                promptText.value = prompt;
+                if (apply) {
+                    applyPromptSettings();
+                }
+            }
+
+            if (promptPresetName) {
+                promptPresetName.value = option.textContent.trim();
+            }
+            localStorage.setItem(STORAGE_KEYS.promptPresetSelected, presetId);
         }
 
         function persistActiveInputSource(source) {
@@ -3523,16 +3987,18 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
 
         // Apply layout order
         function applyLayoutOrder(order) {
-            const mainContent = document.querySelector('.main-content');
-            const videoCard = document.querySelector('.video-card');
-            const resultCard = document.querySelector('.result-card');
+            const rightDrawerContent = document.getElementById('rightDrawerContent');
+            const resultCard = document.getElementById('resultCard');
+            const systemStatsCard = document.getElementById('systemStatsCard');
+
+            if (!rightDrawerContent || !resultCard || !systemStatsCard) {
+                return;
+            }
 
             if (order === 'vlm-first') {
-                // VLM Output Info at top, Camera below (default)
-                mainContent.insertBefore(resultCard, videoCard);
+                rightDrawerContent.insertBefore(resultCard, systemStatsCard);
             } else {
-                // Camera at top, VLM Output Info below
-                mainContent.insertBefore(videoCard, resultCard);
+                rightDrawerContent.insertBefore(systemStatsCard, resultCard);
             }
         }
         applyLayoutOrder(settings.layoutOrder);
@@ -3890,16 +4356,19 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
 
         // Handle preset selection
         promptPreset.addEventListener('change', (e) => {
-            if (e.target.value) {
-                promptText.value = e.target.value;
-                applyPromptSettings();
-
-                // Trigger flash animation to show prompt was applied
-                promptText.classList.add('applied');
-                setTimeout(() => {
-                    promptText.classList.remove('applied');
-                }, 600); // Match animation duration
+            const presetId = e.target.value;
+            if (!presetId) {
+                return;
             }
+
+            applyPresetSelection(presetId, { apply: true });
+            setPresetStatus('Preset loaded.', false);
+
+            // Trigger flash animation to show prompt was applied
+            promptText.classList.add('applied');
+            setTimeout(() => {
+                promptText.classList.remove('applied');
+            }, 600); // Match animation duration
         });
 
         // Auto-apply prompt on blur (when user finishes editing)
@@ -3934,6 +4403,127 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
                 maxTokens.classList.remove('applied');
             }, 600);
         });
+
+        if (leftDrawerToggle) {
+            leftDrawerToggle.addEventListener('click', () => {
+                const next = !(localStorage.getItem(STORAGE_KEYS.drawerLeftCollapsed) === 'true');
+                localStorage.setItem(STORAGE_KEYS.drawerLeftCollapsed, String(next));
+                applyDrawerState({ leftCollapsed: next });
+            });
+        }
+
+        if (rightDrawerToggle) {
+            rightDrawerToggle.addEventListener('click', () => {
+                const next = !(localStorage.getItem(STORAGE_KEYS.drawerRightCollapsed) === 'true');
+                localStorage.setItem(STORAGE_KEYS.drawerRightCollapsed, String(next));
+                applyDrawerState({ rightCollapsed: next });
+            });
+        }
+
+        if (rightDrawerCollapseBtn) {
+            rightDrawerCollapseBtn.addEventListener('click', () => {
+                const next = !(localStorage.getItem(STORAGE_KEYS.drawerRightCollapsed) === 'true');
+                localStorage.setItem(STORAGE_KEYS.drawerRightCollapsed, String(next));
+                applyDrawerState({ rightCollapsed: next });
+            });
+        }
+
+        if (resultCardToggle) {
+            resultCardToggle.addEventListener('click', () => {
+                toggleCardBody(resultCardBody, resultCardToggle);
+            });
+        }
+
+        if (systemStatsToggle) {
+            systemStatsToggle.addEventListener('click', () => {
+                toggleCardBody(systemStatsBody, systemStatsToggle);
+            });
+        }
+
+        if (presetSaveBtn) {
+            presetSaveBtn.addEventListener('click', () => {
+                const name = promptPresetName.value.trim();
+                const prompt = promptText.value.trim();
+                if (!name || !prompt) {
+                    setPresetStatus('Preset name and prompt are required.', true);
+                    return;
+                }
+
+                const userPresets = loadUserPresets();
+                const nameLower = name.toLowerCase();
+                if (userPresets.some(preset => preset.name.toLowerCase() === nameLower)) {
+                    setPresetStatus('Preset name already exists. Use Update instead.', true);
+                    return;
+                }
+
+                const newPreset = {
+                    id: generatePresetId(),
+                    name,
+                    prompt
+                };
+                userPresets.push(newPreset);
+                saveUserPresets(userPresets);
+                renderPromptPresets(newPreset.id);
+                applyPresetSelection(newPreset.id, { apply: false });
+                setPresetStatus('Preset saved.', false);
+            });
+        }
+
+        if (presetUpdateBtn) {
+            presetUpdateBtn.addEventListener('click', () => {
+                const selectedId = promptPreset.value;
+                const option = Array.from(promptPreset.options).find(opt => opt.value === selectedId);
+                if (!selectedId || !option || option.dataset.presetType !== 'custom') {
+                    setPresetStatus('Select a custom preset to update.', true);
+                    return;
+                }
+
+                const name = promptPresetName.value.trim();
+                const prompt = promptText.value.trim();
+                if (!name || !prompt) {
+                    setPresetStatus('Preset name and prompt are required.', true);
+                    return;
+                }
+
+                const userPresets = loadUserPresets();
+                const nameLower = name.toLowerCase();
+                const target = userPresets.find(preset => preset.id === selectedId);
+                if (!target) {
+                    setPresetStatus('Selected preset not found.', true);
+                    return;
+                }
+
+                if (userPresets.some(preset => preset.id !== selectedId && preset.name.toLowerCase() === nameLower)) {
+                    setPresetStatus('Another preset already uses this name.', true);
+                    return;
+                }
+
+                target.name = name;
+                target.prompt = prompt;
+                saveUserPresets(userPresets);
+                renderPromptPresets(target.id);
+                applyPresetSelection(target.id, { apply: false });
+                setPresetStatus('Preset updated.', false);
+            });
+        }
+
+        if (presetDeleteBtn) {
+            presetDeleteBtn.addEventListener('click', () => {
+                const selectedId = promptPreset.value;
+                const option = Array.from(promptPreset.options).find(opt => opt.value === selectedId);
+                if (!selectedId || !option || option.dataset.presetType !== 'custom') {
+                    setPresetStatus('Select a custom preset to delete.', true);
+                    return;
+                }
+
+                const userPresets = loadUserPresets();
+                const nextPresets = userPresets.filter(preset => preset.id !== selectedId);
+                saveUserPresets(nextPresets);
+                renderPromptPresets();
+                promptPresetName.value = '';
+                setPresetStatus('Preset deleted.', false);
+            });
+        }
 
         refreshModelsBtn.addEventListener('click', fetchModels);
 
@@ -5121,6 +5711,12 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
             }
             setVideoFitMode(videoFitMode);
             registerVideoWatchers();
+            renderPromptPresets();
+            const storedPresetId = localStorage.getItem(STORAGE_KEYS.promptPresetSelected);
+            if (storedPresetId) {
+                applyPresetSelection(storedPresetId, { apply: false });
+            }
+            applyDrawerState();
 
             const savedRtspUrl = localStorage.getItem(STORAGE_KEYS.rtspUrl);
             if (savedRtspUrl) {
