@@ -3847,27 +3847,17 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
         // Enumerate cameras on page load
         enumerateCameras();
 
-        // Theme management: Honor OS preference with manual override support
+        // Theme management: Toggle between dark (blue) and light themes
         function applyTheme(theme) {
-            // theme can be 'light', 'dark', or 'auto'
+            // theme can be 'light' or 'dark'
             if (theme === 'light') {
                 document.body.classList.add('light-theme');
                 themeIcon.innerHTML = '<i data-lucide="sun"></i>';
                 themeText.textContent = 'Light';
-            } else if (theme === 'dark') {
+            } else { // 'dark' - default blue mdg-theme
                 document.body.classList.remove('light-theme');
                 themeIcon.innerHTML = '<i data-lucide="moon"></i>';
                 themeText.textContent = 'Dark';
-            } else { // 'auto' - follow OS preference
-                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-                if (prefersLight) {
-                    document.body.classList.add('light-theme');
-                } else {
-                    document.body.classList.remove('light-theme');
-                }
-                // Always show monitor icon for AUTO mode
-                themeIcon.innerHTML = '<i data-lucide="monitor"></i>';
-                themeText.textContent = 'Auto';
             }
             lucide.createIcons();
 
@@ -3884,48 +3874,30 @@ After commands, explain: obstacles detected, clearance margins, goal inference, 
             }
         }
 
-        // Theme Toggle: cycles through Auto -> Light -> Dark -> Auto
+        // Theme Toggle: cycles through Dark -> Light -> Dark
         themeToggle.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('theme') || 'auto';
+            const currentTheme = localStorage.getItem('theme') || 'dark';
             let nextTheme;
 
-            if (currentTheme === 'auto' || !currentTheme) {
-                nextTheme = 'light';
-            } else if (currentTheme === 'light') {
+            if (currentTheme === 'light') {
                 nextTheme = 'dark';
             } else { // dark
-                nextTheme = 'auto';
+                nextTheme = 'light';
             }
 
-            // Only save manual overrides (light/dark) to localStorage
-            // Don't save 'auto' - always check OS preference when in auto mode
-            if (nextTheme === 'auto') {
-                localStorage.removeItem('theme');
-            } else {
-                localStorage.setItem('theme', nextTheme);
-            }
+            localStorage.setItem('theme', nextTheme);
             applyTheme(nextTheme);
         });
 
-        // Load saved theme or detect OS preference
+        // Load saved theme or use dark (blue mdg-theme) as default
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light' || savedTheme === 'dark') {
             // User has manually set a preference - use it
             applyTheme(savedTheme);
         } else {
-            // No manual preference saved - follow OS preference
-            applyTheme('auto');
+            // Default to dark theme (blue mdg-theme background)
+            applyTheme('dark');
         }
-
-        // Listen for OS preference changes when in 'auto' mode
-        const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: light)');
-        colorSchemeQuery.addEventListener('change', (e) => {
-            const currentTheme = localStorage.getItem('theme');
-            // Only update if user hasn't manually set a preference
-            if (!currentTheme || currentTheme === 'auto') {
-                applyTheme('auto');
-            }
-        });
 
         // Load saved colorful UI accents setting (default: disabled for clean two-tone system)
         const colorfulFocusToggle = document.getElementById('colorfulFocusToggle');
