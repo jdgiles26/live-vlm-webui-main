@@ -1,0 +1,252 @@
+================================================================================
+LIVE VLM WEBUI - CUSTOM CONTAINER SETUP COMPLETE ✓
+================================================================================
+
+Your application has been successfully containerized while preserving all custom
+MDG/NVIDIA UI features and code modifications.
+
+================================================================================
+📦 FILES CREATED
+================================================================================
+
+1. Dockerfile.custom
+   - Custom production Dockerfile that builds FROM your source code
+   - Installs all dependencies from your requirements.txt
+   - Generates SSL certificates for HTTPS webcam access
+   - Exposes port 8090 for the web UI
+
+2. docker-compose.custom.yml
+   - Multi-profile compose file (ollama, nim, jetson-orin, jetson-thor)
+   - Builds images locally from your source (not registry pulls)
+   - Includes Ollama and NVIDIA NIM backend options
+   - Pre-configured for GPU access and networking
+
+3. .dockerignore
+   - Optimization: excludes __pycache__, .git, IDE files, etc.
+   - Reduces build context size and layer cache invalidation
+
+4. scripts/start_custom.sh
+   - Convenient wrapper script with platform detection
+   - Handles environment setup (NGC_API_KEY, profiles)
+   - Provides helpful error messages and build status
+
+5. CUSTOM_BUILD_GUIDE.md
+   - Comprehensive guide with quick start and troubleshooting
+   - Development workflow and code modification instructions
+   - Platform-specific setup (PC, DGX Spark, Jetson)
+
+6. QUICK_COMMANDS.sh
+   - Quick reference for common commands
+   - Run this script anytime: ../QUICK_COMMANDS.sh
+
+================================================================================
+🚀 QUICK START
+================================================================================
+
+1. Start the application:
+   
+   ./scripts/start_custom.sh
+
+   OR with Ollama + GPU:
+   
+   docker compose -f docker-compose.custom.yml --profile ollama up --build
+
+2. Pull a vision model (in another terminal):
+   
+   docker exec ollama ollama pull llama3.2-vision:11b
+
+3. Access the web UI:
+   
+   https://localhost:8090
+   (Accept SSL warning: click "Advanced" → "Proceed to localhost")
+
+================================================================================
+✨ KEY FEATURES
+================================================================================
+
+✓ Preserves ALL Your Code
+  - Your custom server.py modifications
+  - Your custom video_processor.py features  
+  - Your MDG/NVIDIA UI customizations
+  - All static files and assets
+
+✓ Easy Rebuild
+  - Edit src/live_vlm_webui/ files
+  - Run: ./scripts/start_custom.sh
+  - Container rebuilds with your changes
+
+✓ No Registry Pulls
+  - Builds FROM local source, never pulls pre-built images
+  - Your custom code is always included
+  - No fear of losing modifications
+
+✓ Multi-Backend Support
+  - Ollama (local, free, no API key)
+  - NVIDIA NIM (production, requires NGC API key)
+  - Easy to add more (vLLM, SGLang, etc.)
+
+✓ Multi-Platform
+  - PC / DGX Spark (x86_64 and ARM64)
+  - Jetson Orin
+  - Jetson Thor
+
+================================================================================
+📋 COMMON COMMANDS
+================================================================================
+
+# Build and start with Ollama
+./scripts/start_custom.sh
+
+# Start with NIM backend
+export NGC_API_KEY=your-key-here
+./scripts/start_custom.sh --nim
+
+# View live logs
+docker compose -f docker-compose.custom.yml logs -f live-vlm-webui
+
+# Shell into container
+docker compose -f docker-compose.custom.yml exec live-vlm-webui bash
+
+# Stop services
+docker compose -f docker-compose.custom.yml down
+
+# Rebuild without starting
+docker compose -f docker-compose.custom.yml build
+
+# Clean everything and rebuild
+docker system prune -a
+./scripts/start_custom.sh
+
+================================================================================
+🔄 DEVELOPMENT WORKFLOW
+================================================================================
+
+1. Make code changes:
+   - Edit src/live_vlm_webui/server.py
+   - Edit src/live_vlm_webui/video_processor.py
+   - Edit src/live_vlm_webui/static/index.html
+   - etc.
+
+2. Rebuild the container:
+   ./scripts/start_custom.sh
+
+3. Test your changes:
+   https://localhost:8090
+
+Repeat as needed. Your custom code is always included.
+
+================================================================================
+📊 IMAGE DETAILS
+================================================================================
+
+Image Name:  live-vlm-webui:custom
+Size:        ~5.2 GB
+Base OS:     Ubuntu 22.04 with NVIDIA CUDA 12.4.1 runtime
+Python:      3.10
+Port:        8090 (HTTPS)
+
+Contains:
+  - Your complete source code
+  - All Python dependencies (aiohttp, aiortc, opencv, numpy, etc.)
+  - FFmpeg libraries (video processing)
+  - WebRTC support
+  - NVIDIA GPU support
+  - Self-signed SSL certificates
+
+================================================================================
+🐳 DOCKER STRUCTURE
+================================================================================
+
+live-vlm-webui/
+├── Dockerfile.custom                    # ← Your custom Dockerfile
+├── .dockerignore                        # ← Build optimization
+├── docker-compose.custom.yml            # ← Your custom compose file
+├── scripts/
+│   └── start_custom.sh                  # ← Convenient start script
+├── src/
+│   └── live_vlm_webui/
+│       ├── server.py                    # ← Your custom code here
+│       ├── video_processor.py           # ← Your custom code here
+│       ├── static/                      # ← Your MDG UI here
+│       └── ...
+├── CUSTOM_BUILD_GUIDE.md                # ← Full documentation
+├── QUICK_COMMANDS.sh                    # ← Quick reference
+└── ...
+
+================================================================================
+✅ VERIFICATION
+================================================================================
+
+Build Status: ✓ Successful
+  Image: live-vlm-webui:custom (5.23 GB)
+  All dependencies installed
+  SSL certificates generated
+  Source code preserved
+
+Ready to use with:
+  - Ollama backend (local, free)
+  - NVIDIA NIM backend (production)
+  - NVIDIA API Catalog (cloud)
+
+================================================================================
+📖 NEXT STEPS
+================================================================================
+
+1. Read the full guide:
+   cat CUSTOM_BUILD_GUIDE.md
+
+2. View quick commands:
+   ../QUICK_COMMANDS.sh
+
+3. Start your application:
+   ./scripts/start_custom.sh
+
+4. Access the UI:
+   https://localhost:8090
+
+5. Pull a vision model:
+   docker exec ollama ollama pull llama3.2-vision:11b
+
+6. Begin development:
+   - Edit your source code
+   - Rebuild: ./scripts/start_custom.sh
+   - Changes are reflected immediately
+
+================================================================================
+🆘 TROUBLESHOOTING
+================================================================================
+
+Q: "Build fails with dependency error"
+A: Clear Docker cache: docker system prune -a && ./scripts/start_custom.sh
+
+Q: "Port 8090 is already in use"
+A: Stop other services: docker ps | grep 8090 → docker stop <container>
+
+Q: "Webcam not working"
+A: Using HTTPS? ✓ Accept SSL warning? ✓ Browser permissions? ✓
+
+Q: "GPU not detected"
+A: Run with: docker run --gpus all live-vlm-webui:custom
+
+Q: "Changed code but changes don't show up"
+A: Rebuild the image: ./scripts/start_custom.sh
+
+For more help, see CUSTOM_BUILD_GUIDE.md
+
+================================================================================
+📞 SUPPORT
+================================================================================
+
+Full Documentation:
+  https://github.com/nvidia-ai-iot/live-vlm-webui
+
+Ollama:
+  https://ollama.com/
+
+NVIDIA NIM:
+  https://docs.nvidia.com/nim/
+
+Vision Language Models:
+  https://github.com/nvidia-ai-iot/live-vlm-webui/docs/usage/list-of-vlms.md
+
+================================================================================
